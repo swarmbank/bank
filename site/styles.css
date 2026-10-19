@@ -88,7 +88,6 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
 .g-open { color: var(--ink-3); }
 .grp.frac svg { clip-path: inset(0 calc(100% - var(--frac, 1) * 100%) 0 0); }
 .inline-note { flex-basis: 100%; max-width: 72ch; }
- color: var(--ink-2); font-size: .95rem; }
 .figs.empty { min-height: 0; }
 .grp::after { content: attr(data-label); position: absolute; left: 0; top: calc(100% + 4px); font-size: .78rem; font-weight: 500; color: var(--ink); background: var(--paper); border-top: 2px solid currentColor; padding: 3px 0 0; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .18s; z-index: 2; }
 .grp:hover::after, .grp:focus-within::after { opacity: 1; }

@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-18T00:00:00Z",
+  "title": "Design System: Swarm Bank",
+  "source": {
+    "artifact": ["site/index.html", "site/styles.css", "site/main.js", "site/spec.html", "site/spec.css", "site/fonts/jost.woff2"],
+    "surfaceBrief": ".impeccable/surfaces/site-index-html.md",
+    "seed": "09c9531a",
+    "world": "Isotype pictorial statistics (Neurath / Arntz)"
+  },
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#ffffff", "tonalRamp": ["#262626", "#404040", "#5b5b5b", "#767676", "#8c8c8c", "#b3b3b3", "#d9d9d9", "#ffffff"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#111111", "tonalRamp": ["#111111", "#262626", "#404040", "#5b5b5b", "#767676", "#8c8c8c", "#b3b3b3", "#e6e6e6"] },
+      "ink-2": { "role": "neutral", "displayName": "Ink 2 (dark grey)", "canonical": "#5b5b5b", "tonalRamp": ["#111111", "#262626", "#404040", "#5b5b5b", "#767676", "#8c8c8c", "#b3b3b3", "#e6e6e6"] },
+      "ink-3": { "role": "neutral", "displayName": "Ink 3 (light grey)", "canonical": "#8c8c8c", "tonalRamp": ["#111111", "#262626", "#404040", "#5b5b5b", "#767676", "#8c8c8c", "#b3b3b3", "#e6e6e6"] },
+      "isotype-red": { "role": "primary", "displayName": "Isotype Red", "canonical": "#d12d1f", "tonalRamp": ["#3a0c08", "#5e130d", "#851b13", "#b1261a", "#d12d1f", "#e3645a", "#f0a39c", "#fbe3e0"] },
+      "isotype-red-pressed": { "role": "primary", "displayName": "Pressed Red (action bar hover)", "canonical": "#b1261a", "tonalRamp": ["#3a0c08", "#5e130d", "#851b13", "#b1261a", "#d12d1f", "#e3645a", "#f0a39c", "#fbe3e0"] },
+      "isotype-blue": { "role": "secondary", "displayName": "Isotype Blue", "canonical": "#1f5fa8", "tonalRamp": ["#0a1f38", "#10325a", "#17487f", "#1f5fa8", "#3d7bc2", "#6f9fd6", "#a9c6e8", "#e1ecf7"] },
+      "isotype-green": { "role": "tertiary", "displayName": "Isotype Green (reserved, undrawn)", "canonical": "#2f8f4e", "tonalRamp": ["#0d2a17", "#164527", "#216a3a", "#2f8f4e", "#4fab6c", "#80c596", "#b5dfc2", "#e4f3e9"] },
+      "rule": { "role": "neutral", "displayName": "Rule", "canonical": "#111111", "tonalRamp": ["#111111", "#262626", "#404040", "#5b5b5b", "#767676", "#8c8c8c", "#b3b3b3", "#e6e6e6"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The one h1; one line at desktop, 40ch max, balanced." },
+      "headline": { "displayName": "Headline", "purpose": "Section heads (.sec-h, .prose h2, .close h2)." },
+      "title": { "displayName": "Title", "purpose": "Text of the red action bar." },
+      "body": { "displayName": "Body", "purpose": "Prose at 70ch; 19px at >=1200px; tabular numerals." },
+      "note": { "displayName": "Note", "purpose": "The sentence beneath a pictogram row, in ink-2; strong returns to ink." },
+      "label": { "displayName": "Label", "purpose": "Uppercase row and stage captions in the left column." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "reveal-ease", "value": "cubic-bezier(.16,1,.3,1)", "purpose": "Exponential ease-out for figure reveal (opacity + 4px rise), 0.32s." },
+      { "name": "reveal-stagger", "value": "calc(var(--i, 0) * 9ms)", "purpose": "Per-figure delay on one shared clock per row; --i stamped by main.js." },
+      { "name": "reveal-trigger", "value": "IntersectionObserver rootMargin 0px 0px -8% 0px", "purpose": "A row reveals once as it enters the viewport; empty rows, reduced motion, ?static=1 and no-IO render immediately." },
+      { "name": "bar-lift", "value": "background .15s, transform .15s cubic-bezier(.2,.9,.3,1)", "purpose": "Action bar hover: pressed red, translateY(-1px); active returns to 0." },
+      { "name": "label-fade", "value": "opacity .18s", "purpose": "Hover/focus count label on a figure group." }
+    ],
+    "breakpoints": [
+      { "name": "phone", "value": "760px", "purpose": "max-width: rows and rule items to one column, stages stack, figures fixed 12px / coins 16px / gap 2px, action bar stacks." },
+      { "name": "wide", "value": "1200px", "purpose": "min-width: body 19px." }
+    ],
+    "browserSurfaces": {
+      "selection": "background var(--sel) (= --red), color #fff",
+      "focusVisible": "outline 3px solid var(--red); outline-offset 3px (figure groups 6px)",
+      "colorScheme": "white paper forced in both schemes; no dark variant"
+    },
+    "pictograms": {
+      "symbols": ["#p-seat", "#p-seat-open", "#p-coin", "#p-coin-half", "#p-coin-out", "#p-grid100"],
+      "grammar": "one figure = ten seats; one coin = one IMD; groups of ten with a four-gap break; rows flow inline like text; captions uppercase in a left column; hairline rules between rows",
+      "sizes": { "fig": "clamp(12px, 1.32vw, 19px) wide, 2x tall", "coin": "clamp(16px, 1.8vw, 26px)", "coinSmall": "0.62 x coin", "panelFig": "0.85 x fig", "gap": "clamp(2px, .35vw, 5px)" },
+      "inkByClass": { ".g-1": "ink", ".g-2": "ink-2", ".g-3": "ink-3", ".g-open": "ink-3 (outlined)", ".g-whale / .g-open-ink": "ink (outlined)", ".red .grp": "isotype-red", ".blue": "isotype-blue" },
+      "fraction": "clip-path: inset(0 calc(100% - var(--frac, 1) * 100%) 0 0) on .grp.frac"
+    }
+  },
+  "components": [
+    {
+      "name": "Action bar",
+      "kind": "button",
+      "refersTo": "action-bar",
+      "description": "The one action: a full-width red bar with its text at left and a small sub-line at right; hover darkens and lifts 1px.",
+      "html": "<a class=\"ds-bar\" href=\"#\">Signal votes open with Stage A<span class=\"ds-bar-sub\">one vote per seat · no wallet needed yet</span></a>",
+      "css": ".ds-bar { display:flex; justify-content:space-between; align-items:baseline; gap:16px; background:var(--red,#d12d1f); color:#fff; text-decoration:none; padding:14px 20px; font-family:Jost,system-ui,sans-serif; font-size:clamp(1.1rem,1.6vw,1.5rem); font-weight:700; letter-spacing:-.005em; border-radius:0; transition:background .15s, transform .15s cubic-bezier(.2,.9,.3,1); } .ds-bar:hover { background:#b1261a; transform:translateY(-1px); } .ds-bar:active { transform:translateY(0); } .ds-bar:focus-visible { outline:3px solid var(--red,#d12d1f); outline-offset:3px; } .ds-bar-sub { font-size:.85rem; font-weight:500; opacity:.92; letter-spacing:0; }"
+    },
+    {
+      "name": "Text link",
+      "kind": "button",
+      "refersTo": "text-link",
+      "description": "The secondary action: ink at weight 500, underlined, red on hover; sits at the right end of the action row.",
+      "html": "<a class=\"ds-textlink\" href=\"#\">Read the spec</a>",
+      "css": ".ds-textlink { font-family:Jost,system-ui,sans-serif; font-size:.95rem; font-weight:500; color:var(--ink,#111111); text-decoration:underline; text-decoration-thickness:1.5px; text-underline-offset:.18em; } .ds-textlink:hover { color:var(--red,#d12d1f); } .ds-textlink:focus-visible { outline:3px solid var(--red,#d12d1f); outline-offset:3px; }"
+    },
+    {
+      "name": "Action row",
+      "kind": "nav",
+      "refersTo": "action-bar",
+      "description": "The 2px rule, the growing red bar and the text link after it.",
+      "html": "<div class=\"ds-action\"><a class=\"ds-bar\" href=\"#\">Signal votes open with Stage A<span class=\"ds-bar-sub\">one vote per seat</span></a><a class=\"ds-textlink\" href=\"#\">Read the spec</a></div>",
+      "css": ".ds-action { display:flex; align-items:center; gap:28px; flex-wrap:wrap; border-top:2px solid var(--rule,#111111); padding:12px 0 26px; font-family:Jost,system-ui,sans-serif; } .ds-action .ds-bar { flex:1 1 420px; display:flex; justify-content:space-between; align-items:baseline; gap:16px; background:var(--red,#d12d1f); color:#fff; text-decoration:none; padding:14px 20px; font-size:clamp(1.1rem,1.6vw,1.5rem); font-weight:700; letter-spacing:-.005em; transition:background .15s, transform .15s cubic-bezier(.2,.9,.3,1); } .ds-action .ds-bar:hover { background:#b1261a; transform:translateY(-1px); } .ds-bar-sub { font-size:.85rem; font-weight:500; opacity:.92; } .ds-textlink { font-size:.95rem; font-weight:500; color:var(--ink,#111111); text-decoration-thickness:1.5px; text-underline-offset:.18em; } .ds-textlink:hover { color:var(--red,#d12d1f); }"
+    },
+    {
+      "name": "Pictogram row",
+      "kind": "custom",
+      "refersTo": "row-caption",
+      "description": "Caption at left, figures at right, hairline rule above. One figure = ten seats; every tenth figure takes a wider gap; hover shows the group's count on a paper label.",
+      "html": "<svg width=\"0\" height=\"0\" style=\"position:absolute\" aria-hidden=\"true\"><symbol id=\"ds-p-seat\" viewBox=\"0 0 20 40\"><circle cx=\"10\" cy=\"6\" r=\"5.5\"/><path d=\"M3 13.5h14l1.5 11h-3.5l-0.8 15h-4.4l-0.8-10-0.8 10H4.8L4 24.5H0.5z\"/></symbol></svg><div class=\"ds-row\"><p class=\"ds-cap\">Seats<small>2,000 · one figure = ten</small></p><div class=\"ds-figs\"><span class=\"ds-grp ds-g1\" tabindex=\"0\" data-label=\"565 wallets, one seat each\"><svg><use href=\"#ds-p-seat\"/></svg><svg><use href=\"#ds-p-seat\"/></svg><svg><use href=\"#ds-p-seat\"/></svg><svg><use href=\"#ds-p-seat\"/></svg><svg><use href=\"#ds-p-seat\"/></svg><svg><use href=\"#ds-p-seat\"/></svg><svg><use href=\"#ds-p-seat\"/></svg><svg><use href=\"#ds-p-seat\"/></svg><svg><use href=\"#ds-p-seat\"/></svg><svg><use href=\"#ds-p-seat\"/></svg><svg><use href=\"#ds-p-seat\"/></svg><svg><use href=\"#ds-p-seat\"/></svg></span><span class=\"ds-grp ds-g2\" tabindex=\"0\" data-label=\"164 wallets, 2 to 5\"><svg><use href=\"#ds-p-seat\"/></svg><svg><use href=\"#ds-p-seat\"/></svg><svg><use href=\"#ds-p-seat\"/></svg></span><span class=\"ds-grp ds-g3\" tabindex=\"0\" data-label=\"46 wallets, 6 to 19\"><svg><use href=\"#ds-p-seat\"/></svg><svg><use href=\"#ds-p-seat\"/></svg></span></div><p class=\"ds-note\">Black: 565 wallets with one seat. <strong>Dark grey:</strong> 164 wallets with 2 to 5.</p></div>",
+      "css": ".ds-row { font-family:Jost,system-ui,sans-serif; color:var(--ink,#111111); font-variant-numeric:tabular-nums; border-top:1px solid var(--rule,#111111); padding:9px 0 8px; display:grid; grid-template-columns:minmax(150px,190px) 1fr; column-gap:24px; align-items:start; } .ds-cap { margin:0; font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; line-height:1.35; } .ds-cap small { display:block; font-weight:500; text-transform:none; letter-spacing:0; color:var(--ink-2,#5b5b5b); font-size:.82rem; margin-top:2px; } .ds-figs { display:block; line-height:0; font-size:0; } .ds-grp { display:inline; position:relative; } .ds-grp svg { display:inline-block; vertical-align:bottom; fill:currentColor; width:clamp(12px,1.32vw,19px); height:calc(clamp(12px,1.32vw,19px)*2); margin:0 clamp(2px,.35vw,5px) calc(clamp(2px,.35vw,5px)*2) 0; } .ds-grp svg:nth-of-type(10n) { margin-right:calc(clamp(2px,.35vw,5px)*4); } .ds-g1 { color:var(--ink,#111111); } .ds-g2 { color:var(--ink-2,#5b5b5b); } .ds-g3 { color:var(--ink-3,#8c8c8c); } .ds-grp::after { content:attr(data-label); position:absolute; left:0; top:calc(100% + 4px); font-size:.78rem; font-weight:500; line-height:1.3; color:var(--ink,#111111); background:var(--paper,#ffffff); border-top:2px solid currentColor; padding:3px 0 0; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .18s; z-index:2; } .ds-grp:hover::after, .ds-grp:focus-within::after { opacity:1; } .ds-grp:focus-visible { outline:3px solid var(--red,#d12d1f); outline-offset:6px; } .ds-note { grid-column:2; margin:7px 0 0; max-width:110ch; color:var(--ink-2,#5b5b5b); font-size:.95rem; line-height:1.5; } .ds-note strong { color:var(--ink,#111111); font-weight:700; }"
+    },
+    {
+      "name": "Coin row (money in)",
+      "kind": "custom",
+      "refersTo": "row-caption",
+      "description": "One coin = one IMD, in Isotype blue for money arriving; the middle ring is paper so the coin reads on any ink.",
+      "html": "<svg width=\"0\" height=\"0\" style=\"position:absolute\" aria-hidden=\"true\"><symbol id=\"ds-p-coin\" viewBox=\"0 0 40 40\"><circle cx=\"20\" cy=\"20\" r=\"18\"/><circle cx=\"20\" cy=\"20\" r=\"12\" fill=\"#ffffff\"/><circle cx=\"20\" cy=\"20\" r=\"6\"/></symbol></svg><div class=\"ds-row\"><p class=\"ds-cap\">In<small>one coin = one IMD</small></p><div class=\"ds-figs ds-blue\"><span class=\"ds-grp\" tabindex=\"0\" data-label=\"12 IMD claimed\"><svg><use href=\"#ds-p-coin\"/></svg><svg><use href=\"#ds-p-coin\"/></svg><svg><use href=\"#ds-p-coin\"/></svg><svg><use href=\"#ds-p-coin\"/></svg><svg><use href=\"#ds-p-coin\"/></svg><svg><use href=\"#ds-p-coin\"/></svg><svg><use href=\"#ds-p-coin\"/></svg><svg><use href=\"#ds-p-coin\"/></svg><svg><use href=\"#ds-p-coin\"/></svg><svg><use href=\"#ds-p-coin\"/></svg><svg><use href=\"#ds-p-coin\"/></svg><svg><use href=\"#ds-p-coin\"/></svg></span></div></div>",
+      "css": ".ds-row { font-family:Jost,system-ui,sans-serif; color:var(--ink,#111111); border-top:1px solid var(--rule,#111111); padding:9px 0 8px; display:grid; grid-template-columns:minmax(150px,190px) 1fr; column-gap:24px; align-items:start; } .ds-cap { margin:0; font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; line-height:1.35; } .ds-cap small { display:block; font-weight:500; text-transform:none; letter-spacing:0; color:var(--ink-2,#5b5b5b); font-size:.82rem; margin-top:2px; } .ds-figs { display:block; line-height:0; font-size:0; } .ds-blue .ds-grp { color:var(--blue,#1f5fa8); } .ds-grp { display:inline; position:relative; } .ds-grp svg { display:inline-block; vertical-align:bottom; fill:currentColor; width:clamp(16px,1.8vw,26px); height:clamp(16px,1.8vw,26px); margin:0 clamp(2px,.35vw,5px) clamp(2px,.35vw,5px) 0; } .ds-grp svg:nth-of-type(10n) { margin-right:calc(clamp(2px,.35vw,5px)*4); } .ds-grp::after { content:attr(data-label); position:absolute; left:0; top:calc(100% + 4px); font-size:.78rem; font-weight:500; line-height:1.3; color:var(--ink,#111111); background:var(--paper,#ffffff); border-top:2px solid currentColor; padding:3px 0 0; white-space:nowrap; opacity:0; transition:opacity .18s; } .ds-grp:hover::after, .ds-grp:focus-within::after { opacity:1; } .ds-grp:focus-visible { outline:3px solid var(--red,#d12d1f); outline-offset:6px; }"
+    },
+    {
+      "name": "Masthead",
+      "kind": "nav",
+      "refersTo": "row-caption",
+      "description": "Baseline-aligned three-column grid under a 2px rule: uppercase wordmark with the seat figure, an ink-2 line with a red em, plain nav links.",
+      "html": "<header class=\"ds-mast\"><a class=\"ds-wordmark\" href=\"#\"><svg viewBox=\"0 0 20 40\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"6\" r=\"5.5\"/><path d=\"M3 13.5h14l1.5 11h-3.5l-0.8 15h-4.4l-0.8-10-0.8 10H4.8L4 24.5H0.5z\"/></svg><span>Swarm Bank</span></a><p class=\"ds-mast-line\">A seat-governed pool for the IMD swarm. <em>A proposal, not live.</em></p><nav class=\"ds-mast-nav\"><a href=\"#\">Overview</a><a href=\"#\">Rules</a><a href=\"#\">Spec</a></nav></header>",
+      "css": ".ds-mast { font-family:Jost,system-ui,sans-serif; color:var(--ink,#111111); padding-top:18px; display:grid; grid-template-columns:auto 1fr auto; gap:24px; align-items:baseline; border-bottom:2px solid var(--rule,#111111); } .ds-wordmark { display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:inherit; font-weight:700; letter-spacing:.02em; text-transform:uppercase; font-size:.95rem; padding-bottom:10px; } .ds-wordmark svg { width:11px; height:22px; fill:currentColor; } .ds-mast-line { margin:0; padding-bottom:10px; color:var(--ink-2,#5b5b5b); font-size:17px; line-height:1.5; } .ds-mast-line em { font-style:normal; font-weight:500; color:var(--red,#d12d1f); } .ds-mast-nav { display:flex; gap:20px; padding-bottom:10px; font-size:.95rem; } .ds-mast-nav a { color:inherit; text-decoration:none; } .ds-mast-nav a:hover { text-decoration:underline; text-decoration-thickness:1.5px; text-underline-offset:.18em; color:var(--red,#d12d1f); }"
+    },
+    {
+      "name": "Stages",
+      "kind": "card",
+      "refersTo": "stage-cell",
+      "description": "Three hairline columns; the current stage's caption is red. The closest thing to a card the system has: no fill, no border box, rules only.",
+      "html": "<div class=\"ds-stages\"><div class=\"ds-stage ds-now\"><p class=\"ds-cap\">Stage A<small>now</small></p><p>Idea page, seat-verified signal votes, a Safe as the pool.</p></div><div class=\"ds-stage\"><p class=\"ds-cap\">Stage B<small>proposed</small></p><p>Contracts replace the Safe.</p></div><div class=\"ds-stage\"><p class=\"ds-cap\">Stage C<small>proposed</small></p><p>Oracle lane and per-agent budgets.</p></div></div>",
+      "css": ".ds-stages { font-family:Jost,system-ui,sans-serif; color:var(--ink,#111111); font-size:17px; line-height:1.5; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--rule,#111111); } .ds-stage { padding:16px 24px 22px; border-right:1px solid var(--rule,#111111); } .ds-stage:last-child { border-right:0; } .ds-stage p { margin:8px 0 0; max-width:40ch; } .ds-cap { margin:0; font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; line-height:1.35; } .ds-cap small { display:block; font-weight:500; text-transform:none; letter-spacing:0; color:var(--ink-2,#5b5b5b); font-size:.82rem; margin-top:2px; } .ds-now .ds-cap, .ds-now .ds-cap small { color:var(--red,#d12d1f); }"
+    },
+    {
+      "name": "Spec table (Read page)",
+      "kind": "custom",
+      "refersTo": "row-note",
+      "description": "Full-width table with hairline row rules and uppercase tracked heads over a 2px rule; no zebra, no side borders.",
+      "html": "<table class=\"ds-table\"><thead><tr><th>Term</th><th>Meaning</th><th>Status</th></tr></thead><tbody><tr><td>Seat</td><td>One identity.md NFT; one vote.</td><td>Fact</td></tr><tr><td>Quorum</td><td>Share of seats that must vote.</td><td>Proposed</td></tr></tbody></table>",
+      "css": ".ds-table { font-family:Jost,system-ui,sans-serif; color:var(--ink,#111111); border-collapse:collapse; width:100%; margin:12px 0 18px; font-size:.92rem; line-height:1.5; font-variant-numeric:tabular-nums; } .ds-table th, .ds-table td { text-align:left; vertical-align:top; padding:8px 14px 8px 0; border-bottom:1px solid var(--rule,#111111); } .ds-table th { font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; border-bottom-width:2px; } .ds-table td:first-child, .ds-table th:first-child { width:16%; } .ds-table td:nth-child(2), .ds-table th:nth-child(2) { width:46%; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Isotype Ledger",
+    "overview": "Swarm Bank is drawn the way Otto Neurath and Gerd Arntz drew social statistics: every quantity on the page is a countable row of pictograms on white paper, so a visitor sees who votes, what came in and what went out before reading a number. One figure is ten seats; one coin is one IMD. Figures stand in groups of ten with a wider gap after each group, rows flow inline like a line of text, and a small uppercase caption sits in a left column beside each row. Hairline black rules separate rows; a heavier rule marks the masthead, the action and the footer.\n\nThe material is print, not screen: black ink on white, three named colour inks each with one job, no cards, no shadows, no gradients, no icons beyond the authored pictogram set. Type is one geometric sans (Jost, self-hosted variable) in three weights with tabular numerals, because the page is a table that happens to be read like prose. The build refused the DAO-treasury landing (dark ground, hero metric, two buttons, feature cards); nothing here floats, glows or stacks.\n\nMotion is one clock: when a row enters the viewport its figures appear one after another on a 9ms stagger with an exponential ease-out. That is the only animation on the site and it is skipped for reduced-motion users and for ?static=1.",
+    "keyCharacteristics": [
+      "Every number is first drawn as a countable row (figures in tens, coins one-to-one), then stated in words in a note beneath.",
+      "White ground, black figures; red, blue and green inks each mean one thing.",
+      "Hairline black rules are the only structure: no boxes, borders-as-cards, shadows or fills.",
+      "One sans (Jost 400 / 500 / 700), tabular figures, uppercase tracked captions set small at the left.",
+      "Rows and lists share one two-column grid (caption column + content) that collapses to one column at 760px.",
+      "One action: a full-width red bar with a plain text link at its right."
+    ],
+    "rules": [
+      { "name": "The One-Job Ink Rule", "body": "Each colour means one thing: black is seats and print, grey tiers are holder size, red is money out and the single action, blue is money in, green is the pool held. A colour is never used for decoration or a second meaning.", "section": "colors" },
+      { "name": "The Grey-Is-Size Rule", "body": "Seat figures are tiered by holder size, darkest for the smallest holder (ink → ink-2 → ink-3); wallets over the proposed cap are drawn as outlined figures (#p-seat-open), not another fill.", "section": "colors" },
+      { "name": "The Tabular Rule", "body": "Numerals are tabular everywhere. Counts are never typeset in a display size; the drawn row is the display, the number is a note.", "section": "typography" },
+      { "name": "The Three-Weight Rule", "body": "Jost at 400, 500 and 700 only. Emphasis is weight, never italic (em is upright 500).", "section": "typography" },
+      { "name": "The Flat Print Rule", "body": "Nothing casts, floats or layers. If an element needs separating, it gets a rule, never a box.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do draw a quantity before stating it: a row of pictograms (one figure = ten seats, one coin = one IMD), then a note in ink-2 with the number in tabular figures.",
+      "Do group figures in tens with a four-gap break after every tenth, and let rows wrap inline like text.",
+      "Do put the caption in the left column, uppercase 0.8rem tracked 0.08em, and open each row with a 1px rule.",
+      "Do keep the three inks to their jobs: red = money out and the one action, blue = money in, green = pool held, greys = holder size.",
+      "Do use Jost at 400 / 500 / 700 only, with tabular numerals, and keep the h1 to one line at desktop.",
+      "Do run every reveal on the shared clock (--i × 9ms, 0.32s, exponential ease-out) and honour reduced motion and ?static=1.",
+      "Do keep one red action bar per view with the secondary action as a plain text link at its right."
+    ],
+    "donts": [
+      "Don't add cards, shadows, gradients, tinted panels or a dark ground; the only surface is white paper and the only structure is black rules.",
+      "Don't introduce icons outside the authored pictogram set, or an icon font, or raster logos.",
+      "Don't typeset a number as a hero metric or stat strip; the drawn row is the display.",
+      "Don't use red, blue or green for emphasis or decoration, or give one ink a second meaning.",
+      "Don't italicise; emphasis is weight 500 upright.",
+      "Don't add a second button style; secondary actions are text links.",
+      "Don't assign ink inside a symbol; pictograms fill currentColor and take their ink from the group's class."
+    ],
+    "notCanonized": [
+      "Isotype green (--green #2f8f4e) is defined but no element draws it; recorded as reserved for the pool held, not as a used token.",
+      "The hover count label (.grp::after) renders below the group (top: calc(100% + 4px)), not in the left margin as the FIRST VIEWPORT block named; recorded as built, the margin placement stays open.",
+      "#p-coin-half and #p-coin-out are authored symbols that nothing on the page draws (main.js draws #p-coin only; fractions use clip-path; the OUT row is empty). Listed in the set, not given rules.",
+      "styles.css line 91 is an orphaned declaration fragment (' color: var(--ink-2); font-size: .95rem; }') with no selector; dead CSS, harmless, not repaired (site files out of write scope)."
+    ]
+  }
+}
