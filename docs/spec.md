@@ -261,7 +261,7 @@ two sides: the swarm site renders it, this app owns the truth.
 the owner becomes a contractor the swarm hired, not the sponsor.
 
 **Order**
-1. Spec public; `/pool` signal page in this app; Safe with named seat holders.
+1. Spec public; `/pool` signal page in the operator app (plan: operator repo `docs/todo-pool-signal-votes.md`, written 2026-10-19); the custody question is proposal #1.
 2. Founding oracle question; attestation shown on the page.
 3. Launch the pool token from the Safe; distributor claim card; "claim then vote".
 4. Site job to the swarm, API contract fixed first.
