@@ -8,3 +8,5 @@ broadcast/
 .DS_Store
 .impeccable/review/
 .impeccable/mocks/
+CLAUDE.md
+docs/private/
