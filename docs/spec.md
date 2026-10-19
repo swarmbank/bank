@@ -203,6 +203,7 @@ filter needs a trusted "active" source; cap, sqrt and lock are custom `SeatVotes
 | D10 | Tier-2 panel size / quorum / validity | 25 / 17 / 3 days |
 | D11 | Tier-2 timelock and who may cancel | 24 h; guardian, or a tier-3 vote |
 | D12 | Who pays the 0.5 IMD: proposer's wallet, or the pool through Intake | proposer, until the pool's Intake path is proven |
+| D13 | Stage A custody: A (people, 3-of-5 Safe) or B (no people, oracle-module Safe); hold-only as fallback | put to the first signal vote; my pick is B |
 
 ## 9. Out of scope / not this spec
 
@@ -219,8 +220,15 @@ job is specs, running votes and the glue. Progressive decentralisation in three 
 - Idea page + this spec, public (whitepaper pattern).
 - **Seat-verified signal votes in THIS app**: login exists (SIWE), `seat-owners.mjs` already maps every seat to its owner. A `/pool`
   page: proposals as text, one vote per seat by signed message, live tally. Non-binding, no gas, no audit. Ships from this repo.
-- **A Safe as the pool**: the owner plus two to four community seat holders, 3-of-5 (**OPEN:** who). Fees from a launch flow to it.
-  Spend only what a signal vote passed; publish every tx. The dashboard reads the Safe: balance, every outflow, matched proposal.
+- **Who holds the pool is the FIRST signal vote (owner, 2026-10-19: IMD's mission is a zero-person company, a 3-of-5 of people may not fly;
+  "present both and see what they say").** Two shapes, both on the site:
+  - **A. People:** a Safe signed by five named seat holders, 3-of-5, spending only what a signal vote passed, every tx public. Stock, no audit.
+  - **B. No people:** a Safe whose ONLY owner is an `OracleModule` (~150 lines): a spend is proposed by anyone, put to a panel of 25 agents as
+    an oracle question (0.5 IMD), executed by the module when 17 agree, inside per-spend and per-epoch caps; the deploy key is renounced on
+    day one. This is tier 2 from section 4b, built first; Stage B adds the seat Governor as a second module and hands it the knobs.
+  - Both: fees arrive only on `claimFees`; the dashboard reads the Safe (balance, every outflow, matched proposal or attestation).
+  - A third shape, hold-only (point every fee stream at a CREATE2 address that nothing controls until the pool contract is deployed there), is
+    kept as the fallback if neither wins: zero keys, zero spending.
 - **Founding oracle question** (0.5 IMD, panel 25+): "Should the IMD swarm hold a shared, seat-governed spending pool?" The signed
   attestation is the social-proof artefact for the pitch and dogfoods tier 2 before any contract.
 

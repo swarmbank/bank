@@ -11,3 +11,4 @@ One line per decision, newest last. Open items live in `spec.md` section 8.
 | 2026-10-19 | Site: static HTML/CSS in `site/`, self-hosted Jost, no framework; label `bank` on sites.imd.fun (free as of this date). Build path code-first. | owner |
 | 2026-10-19 | Visual world: Isotype pictorial statistics (one figure = ten seats, one coin = one IMD; black / red / blue / green inks). Chosen over the roll's passbook. Seat distribution drawn from the chain: 2,000 seats, 792 wallets, 17 wallets hold 26%. | owner |
 | 2026-10-19 | The site names and links no other project or token (no SVO, no IMDO, no sovrn.one, no offsets.fun, no tx links). INFER, a swarm launch, is the fee example. The vote action is an in-page anchor until a vote route exists. | owner |
+| 2026-10-19 | Stage A custody is the first signal vote: A people (3-of-5 Safe) vs B no people (oracle-module Safe). Present both. Hold-only CREATE2 address as fallback. | owner |

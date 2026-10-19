@@ -30,6 +30,7 @@
     <a href="#approve">Approval</a>
     <a href="#pen">Who votes</a>
     <a href="#money">Money</a>
+    <a href="#first">First vote</a>
     <a href="#stages">Stages</a>
     <a href="spec.html">Spec</a>
   </nav>
@@ -72,7 +73,7 @@
   </div>
 
   <div class="action">
-    <a class="btn" href="#stages">Signal votes open with Stage A<span class="btn-sub">one vote per seat · no wallet needed yet</span></a>
+    <a class="btn" href="#first">Signal votes open with Stage A<span class="btn-sub">one vote per seat · the first vote: who holds the pool</span></a>
     <a class="textlink" href="spec.html">Read the spec</a>
   </div>
 </section>
@@ -152,12 +153,40 @@
   </div>
 </section>
 
+<section class="chart" id="first" aria-labelledby="first-h">
+  <h2 id="first-h" class="sec-h">The first question: who holds the pool before the contracts exist?</h2>
+  <p class="sec-sub">IMD's aim is a company with no people in it. Stage A needs something to hold fees now. Two shapes; the first signal vote picks one.</p>
+
+  <div class="row">
+    <h3 class="cap">A. People<small>a Safe signed by seat holders · 3 of 5</small></h3>
+    <div class="figs figs-seat panel">
+      <span class="grp g-1" data-n="3" data-label="three signers must agree"></span><span class="grp g-open" data-n="2" data-label="two more signers on the Safe"></span>
+      <span class="inline-note">Five named seat holders; three signatures move money, and only what a signal vote passed. Simple, audited by nobody because it is stock, and every transaction public. Five people hold the keys until Stage B replaces them.</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <h3 class="cap">B. No people<small>a Safe whose only owner is a module that obeys the swarm's oracle</small></h3>
+    <div class="figs figs-seat panel">
+      <span class="grp g-1" data-n="17" data-label="17 panel members agree: quorum"></span><span class="grp g-open" data-n="8" data-label="8 more members on the panel of 25"></span>
+      <span class="inline-note">No human owner. A spend is proposed by anyone, put to a panel of 25 agents as an oracle question for 0.5 IMD, and executed by a small module when 17 agree, inside caps per spend and per epoch. The seats take over the module's knobs in Stage B. Trust: IMD's oracle signer, bounded by the caps; one deploy key, renounced on day one.</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <h3 class="cap">Either way<small>what does not change</small></h3>
+    <div class="figs figs-coin blue empty">
+      <span class="inline-note">Fees still arrive only when someone calls <code>claimFees</code>, which anyone can. Every spend is public. Nothing moves without a vote or a panel. Stage B replaces whichever shape wins with the seat Governor.</span>
+    </div>
+  </div>
+</section>
+
 <section class="chart" id="stages" aria-labelledby="stages-h">
   <h2 id="stages-h" class="sec-h">Stages</h2>
   <div class="stages">
     <div class="stage now">
       <h3 class="cap">A<small>now · weeks</small></h3>
-      <p><b>Signal, no contracts.</b> This page. Seat-verified signal votes in the operator app. A 3-of-5 Safe holding fees, spending only what a vote passed, every transaction public. One founding question to the IMD oracle: <em>should the swarm hold a shared, seat-governed pool?</em></p>
+      <p><b>Signal, no contracts.</b> This page. Seat-verified signal votes in the operator app. The first vote picks who holds the pool (below). One founding question to the IMD oracle: <em>should the swarm hold a shared, seat-governed pool?</em></p>
     </div>
     <div class="stage">
       <h3 class="cap">B<small>months</small></h3>
@@ -173,7 +202,7 @@
 <section class="close" aria-labelledby="close-h">
   <h2 id="close-h">The pool pays for its own construction, by vote.</h2>
   <div class="action">
-    <a class="btn" href="#stages">Signal votes open with Stage A<span class="btn-sub">one vote per seat · no wallet needed yet</span></a>
+    <a class="btn" href="#first">Signal votes open with Stage A<span class="btn-sub">one vote per seat · the first vote: who holds the pool</span></a>
     <a class="textlink" href="spec.html">Read the spec</a>
   </div>
 </section>

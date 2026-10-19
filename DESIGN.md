@@ -49,6 +49,27 @@ typography:
     fontWeight: 700
     lineHeight: 1.35
     letterSpacing: "0.08em"
+  body-wide:
+    fontFamily: "Jost, system-ui, sans-serif"
+    fontSize: "19px"
+    fontWeight: 400
+    lineHeight: 1.5
+    letterSpacing: "normal"
+    note: "body at viewports of 1200px and wider"
+  bar-sub:
+    fontFamily: "Jost, system-ui, sans-serif"
+    fontSize: "0.85rem"
+    fontWeight: 500
+    lineHeight: 1.5
+    letterSpacing: "normal"
+    note: "the sub-line inside the red action bar"
+  fine:
+    fontFamily: "Jost, system-ui, sans-serif"
+    fontSize: "0.9rem"
+    fontWeight: 400
+    lineHeight: 1.5
+    letterSpacing: "normal"
+    note: "footer and smallprint"
 rounded:
   none: "0px"
 spacing:
