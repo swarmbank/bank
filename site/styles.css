@@ -3,8 +3,8 @@
 :root {
   --paper: #ffffff;
   --ink: #111111;
-  --ink-2: rgba(17,17,17,.62);
-  --ink-3: rgba(17,17,17,.36);
+  --ink-2: #5b5b5b;
+  --ink-3: #8c8c8c;
   --red: #d12d1f;
   --blue: #1f5fa8;
   --green: #2f8f4e;
@@ -59,7 +59,7 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
 
 /* Lead */
 .lead { padding-top: 18px; }
-.lead-h { font-size: clamp(1.6rem, 3vw, 2.9rem); line-height: 1.05; font-weight: 700; letter-spacing: -.015em; margin: 0 0 8px; max-width: 30ch; text-wrap: balance; }
+.lead-h { font-size: clamp(1.5rem, 2.6vw, 2.5rem); line-height: 1.1; font-weight: 700; letter-spacing: -.015em; margin: 0 0 10px; max-width: 40ch; text-wrap: balance; }
 .lead-sub { margin: 0 0 6px; max-width: 96ch; color: var(--ink-2); }
 
 /* Rows */
@@ -68,12 +68,13 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
 .cap small { display: block; font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--ink-2); font-size: .82rem; margin-top: 2px; }
 .row .note { grid-column: 2; margin: 7px 0 0; max-width: 110ch; color: var(--ink-2); font-size: .95rem; }
 .row .note strong { color: var(--ink); }
-.figs { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px 14px; min-height: calc(var(--fig) * 2); }
-.figs-seat { display: block; line-height: 0; font-size: 0; word-spacing: 0; }
-.figs-seat .grp { display: inline; position: relative; }
+.figs { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px 14px; min-height: calc(var(--fig) * 2); }
+.figs-seat, .figs-coin { display: block; line-height: 0; font-size: 0; word-spacing: 0; }
+.figs-seat .grp, .figs-coin .grp { display: inline; position: relative; }
 .figs-seat .grp svg { margin: 0 var(--gap) calc(var(--gap) * 2) 0; }
-.figs-seat .grp svg:nth-of-type(10n) { margin-right: calc(var(--gap) * 4); }
-.figs-seat .inline-note, .figs-seat + .note { display: block; }
+.figs-coin .grp svg { margin: 0 var(--gap) var(--gap) 0; }
+.figs-seat .grp svg:nth-of-type(10n), .figs-coin .grp svg:nth-of-type(10n) { margin-right: calc(var(--gap) * 4); }
+.figs .inline-note { display: block; font-size: .95rem; line-height: 1.5; margin-top: 6px; max-width: 110ch; }
 .grp svg { width: var(--fig); height: calc(var(--fig) * 2); }
 .figs-coin .grp svg { width: var(--coin); height: var(--coin); }
 .figs-coin.small .grp svg { width: calc(var(--coin) * .62); height: calc(var(--coin) * .62); }
@@ -81,14 +82,14 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
 .g-1 { color: var(--ink); }
 .g-2 { color: var(--ink-2); }
 .g-3 { color: var(--ink-3); }
-.g-whale, .red .grp, .grp.ink-red { color: var(--red); }
+.g-whale { color: var(--ink); }
+.red .grp { color: var(--red); }
 .blue .grp, .grp.blue { color: var(--blue); }
 .g-open { color: var(--ink-3); }
 .grp.frac svg { clip-path: inset(0 calc(100% - var(--frac, 1) * 100%) 0 0); }
 .inline-note { flex-basis: 100%; max-width: 72ch; }
-.inline-note.wide { flex: 1 1 0; max-width: 100ch; color: var(--ink-2); font-size: .95rem; }
-.figs-seat .inline-note { font-size: .95rem; line-height: 1.5; margin-top: 8px; }
-.figs.empty { min-height: calc(var(--coin) * 1.2); }
+ color: var(--ink-2); font-size: .95rem; }
+.figs.empty { min-height: 0; }
 .grp::after { content: attr(data-label); position: absolute; left: 0; top: calc(100% + 4px); font-size: .78rem; font-weight: 500; color: var(--ink); background: var(--paper); border-top: 2px solid currentColor; padding: 3px 0 0; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .18s; z-index: 2; }
 .grp:hover::after, .grp:focus-within::after { opacity: 1; }
 .grp[tabindex]:focus-visible { outline-offset: 6px; }
@@ -116,7 +117,9 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
 .rule-fig { display: inline-flex; gap: 3px; align-items: flex-end; }
 .rule-fig svg { width: calc(var(--fig) * .9); height: calc(var(--fig) * 1.8); }
 .rule-fig .dim { color: var(--ink-3); }
-.rule-fig.count { font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 700; letter-spacing: -.02em; line-height: 1; }
+.rule-fig .pict-grid { width: calc(var(--fig) * 2.6); height: calc(var(--fig) * 2.6); }
+.rule-fig .pict-lock { width: calc(var(--fig) * 4.1); height: calc(var(--fig) * 1.8); }
+.rule-fig .pict-sqrt { width: calc(var(--fig) * 4.4); height: calc(var(--fig) * 2.1); }
 
 /* Stages */
 .stages { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule); }

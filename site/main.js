@@ -9,7 +9,7 @@
     row.querySelectorAll('.grp').forEach(function (g) {
       var n = parseInt(g.getAttribute('data-n') || '0', 10);
       var frac = g.getAttribute('data-frac');
-      var sym = isCoin ? (frac ? '#p-coin' : '#p-coin') : (g.classList.contains('g-open') ? '#p-seat-open' : '#p-seat');
+      var sym = isCoin ? (frac ? '#p-coin' : '#p-coin') : ((g.classList.contains('g-open') || g.classList.contains('g-open-ink')) ? '#p-seat-open' : '#p-seat');
       var html = '';
       for (var k = 0; k < n; k++) {
         html += '<svg style="--i:' + (i++) + '" aria-hidden="true"><use href="' + sym + '"></use></svg>';

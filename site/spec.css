@@ -1,4 +1,5 @@
-.spec { max-width: 80ch; padding-top: 28px; }
+.spec { max-width: 1240px; padding-top: 28px; }
+.spec h1, .spec h2, .spec h3, .spec p, .spec ul, .spec ol, .spec blockquote, .spec pre { max-width: 80ch; }
 .spec h1 { font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.1; letter-spacing: -.015em; margin: 0 0 16px; }
 .spec h2 { font-size: clamp(1.25rem, 2vw, 1.6rem); margin: 40px 0 10px; padding-top: 14px; border-top: 2px solid var(--rule); line-height: 1.2; }
 .spec h3 { font-size: 1.05rem; margin: 24px 0 8px; }
@@ -7,7 +8,9 @@
 .spec ul, .spec ol { padding-left: 1.3em; margin: 0 0 12px; }
 .spec li { margin: 4px 0; }
 .spec table { border-collapse: collapse; width: 100%; margin: 12px 0 18px; font-size: .92rem; }
-.spec th, .spec td { text-align: left; vertical-align: top; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--rule); }
+.spec th, .spec td { text-align: left; vertical-align: top; padding: 8px 14px 8px 0; border-bottom: 1px solid var(--rule); }
+.spec td:first-child, .spec th:first-child { width: 16%; }
+.spec td:nth-child(2), .spec th:nth-child(2) { width: 46%; }
 .spec th { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; border-bottom-width: 2px; }
 .spec pre { background: rgba(17,17,17,.05); padding: 12px 14px; overflow: auto; font-size: .9rem; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
 .spec pre code { font-family: inherit; font-weight: 400; }

@@ -2,7 +2,11 @@
 """Render docs/spec.md as site/spec.html with the site's stylesheet. Minimal Markdown: headings, paragraphs, lists, tables, code, bold, links, blockquotes."""
 import re, html, pathlib
 root = pathlib.Path(__file__).resolve().parents[1]
-src = (root / "docs" / "spec.md").read_text().split("\n")
+raw = (root / "docs" / "spec.md").read_text()
+# Public rendering names no token (owner, 2026-10-19): the internal spec keeps the real examples.
+for a, b in [("SVO's", "that launch's"), ("SVO", "one launch token"), ("IMDO's", "an existing hook launch's"), ("IMDO", "an existing hook launch"), ("sovrn.one", "that project's site"), ("Sovrn", "that project's"), ("ToknWrks/imdo", "the hook-launch repo"), ("imdo", "the hook launch"), ("offsets.fun", "the operator app"), ("hoolibear/imd", "the operator app repo")]:
+    raw = raw.replace(a, b)
+src = raw.split("\n")
 def inline(s):
     s = html.escape(s, quote=False)
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)

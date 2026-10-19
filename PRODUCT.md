@@ -27,6 +27,7 @@ The only treasury design where the voters are the swarm's own seats (one seat, o
 
 ## Capabilities and Constraints
 - Static page: no wallet connection, no vote, no claim on this site. Actions link out to the operator app (vote) and to the spec (read).
+- The site names and links no other project or token (owner, 2026-10-19): no SVO, no IMDO, no sovrn.one, no offsets.fun, no transaction links. Those facts stay in the internal spec only; the public spec rendering scrubs them (scripts/build-spec.py).
 - Wording: "pool" or "treasury" for the mechanism; "Swarm Bank" is the project name only. Never "bank" as a claim of custody or deposits. No yield, APY, returns, or price language. No promise about a token.
 - Facts that stay true: 0.5 IMD per oracle question / per job; one member per panel seat; seats are transferable NFTs; a 1% launch-pool share is small unless volume is real (SVO: about $22 since launch).
 - Undecided: pair asset, caps, quorum, panel size (spec section 8). The page shows these as proposals, not settled numbers.

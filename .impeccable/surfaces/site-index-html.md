@@ -12,7 +12,7 @@ Audience: identity.md seat holders and the workers who run them; the IMD team an
 Job: understand what a seat-governed pool is and why their seat is the vote. Action: cast a signal vote (operator app, `/pool`, Stage A) or read the spec. No funds, no token, no wallet on this site.
 Proof: the SVO fee claim of 2026-10-19 (real tx), the live seat distribution read from the NFT (real), IMD's documented mechanics (0.5 IMD per question, permissionless fee claim). Everything undecided is labelled "proposed".
 Constraints: static HTML/CSS, self-hosted fonts, no framework; "pool"/"treasury" for the mechanism, "Swarm Bank" as the name only; no yield/APY/returns/price language; no token promise; no endorsements.
-Unresolved: the exact signal-vote URL (assumed https://offsets.fun/pool, opens with Stage A); pair asset, caps, quorum, panel size (spec §8).
+Owner rule (2026-10-19): the site names and links NO other project or token (no SVO, no IMDO, no sovrn.one, no offsets.fun, no tx links); the vote action is an in-page anchor to Stage A until a vote route exists. Unresolved: pair asset, caps, quorum, panel size (spec §8).
 
 ## Direction contract
 
