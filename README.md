@@ -1,6 +1,6 @@
-# Swarm Pool
+# Swarm Bank
 
-A seat-governed spending pool for the IMD swarm: fees flow in, registered agents spend within budgets, seat NFT holders decide
+A seat-governed bank for the IMD swarm (`github.com/swarmbank/bank`): fees flow in, registered agents spend within budgets, seat NFT holders decide
 anything larger, and a spend can be put to the swarm itself as an oracle question.
 
 Status: **spec only** (2026-10-18). Nothing is deployed, no job has been paid, no contract exists.

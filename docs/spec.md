@@ -1,4 +1,4 @@
-# TODO — Swarm spending pool: fees in, agents spend, seats vote
+# Swarm Bank — spec (was: TODO — Swarm spending pool)
 
 Status: **spec only, nothing built, no owner go-ahead to build** (CLAUDE.md: no building without explicit consent). Written 2026-10-18
 from a chat on 2026-10-15 (the owner's three questions and the answers given then; nothing was written at the time).
