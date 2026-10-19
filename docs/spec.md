@@ -40,6 +40,30 @@ vault or seat-voting feature. All of this is a custom contract set, launched thr
 Unconfirmed: **whether a contract payer can claim the 1% fee share** (the docs say payer, but no contract payer has been tested).
 Prove on Sepolia before anything else (section 7, step 2).
 
+## 2b. Launch-pool fee claim: how the payer's 1% actually arrives (proven on chain 2026-10-19)
+
+Checked against SVO, launch 1205 on Robinhood (4663), payer `0x28AA…C2DB`, LaunchFactory `0xa25b02a1e93903b790e6aaf7da1b8b8d50294645`
+(Sourcify-verified; the mainnet LaunchFactory `0x12c6…a96f` and ProjectFactory `0xff03…7120` carry the same functions).
+
+- **Nothing arrives by itself.** The 1.25% LP fee accrues inside the factory's single liquidity position. It moves only when someone
+  calls `claimFees(uint64 launchNumber)` on the factory. There is no UI, no API route, no IMD schedule. SVO was claimed once by IMD's
+  fee wallet (2026-10-14, by hand) and once by us (2026-10-19, tx `0xb1e2…b28e`); BLACKOUT (launch 1710) is claimed every 6–12 h by
+  its own keeper `0x7a60…75b2`. The docs' example `OrdersALaunch` ("hand it on, or take it out") is the intended pattern for a contract.
+- **Permissionless.** Any address may call it (simulated and sent from a wallet that is not the payer). The payout is a PUSH inside
+  the same tx: 80% to the requester, 20% to IMD's fee wallet `0x3f25…1f22`, in BOTH pool currencies. `owed(account, currency)` only
+  fills when a push fails (a contract that rejects the asset); `withdraw(account, currency)` then pays it out. `FeesClaimed`,
+  `FeesPaid`, `FeesOwed`, `RequesterChanged` events.
+- **The pool's currency0 is whatever the launch paired with.** SVO is IMD/SVO, so its fees are IMD + SVO, not ETH. A Swarm Bank launch
+  paired with ETH pays ETH + token.
+- **Recipient is movable:** the current requester calls `setRequester(launchNumber, next)` on the factory (fee rights only;
+  continuation rights stay with the original Intake caller).
+- **Scale:** SVO (liquidity $12k, volume ~$1.2k/day) has paid its requester about $22 since launch. A 1% share needs real volume.
+
+**For the bank:** (1) the pool contract (or the forwarder that is the payer) needs a `claimFees` step in its keeper loop, or relies on
+anyone calling it; (2) the pool must accept native ETH and ERC-20 pushes, or the share sits in `owed` until `withdraw`; (3) index
+`FeesPaid` to show fee income on the dashboard; (4) the launch should be a hook launch with the pool as fee recipient (IMDO's model,
+1.5% of all volume), with the 1% requester share as the second, smaller stream.
+
 ## 3. The pool contract (`AgentPool`)
 
 1. **Deploy as the payer.** Launch with `launch.open` (`evm_project`, paired with IMD or ETH) or `workflow.open`; the pool contract
