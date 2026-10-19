@@ -64,6 +64,36 @@ anyone calling it; (2) the pool must accept native ETH and ERC-20 pushes, or the
 `FeesPaid` to show fee income on the dashboard; (4) the launch should be a hook launch with the pool as fee recipient (IMDO's model,
 1.5% of all volume), with the 1% requester share as the second, smaller stream.
 
+## 2c. Where the money comes from, and where it does not (owner question, 2026-10-19)
+
+The pool is an address that accepts ETH and ERC-20. Anything that can name a recipient can fund it. **Nothing below asks IMD to
+change how launches work or to allocate anything to this project**; every stream is a plain contract mechanic that exists today.
+IMDO is a separate project (its own token, hook and treasury since 2026-10-16) and appears here only as proof that a hook launch
+can send its fee to a recipient of the launcher's choosing.
+
+| Stream | Mechanism | Limit |
+|---|---|---|
+| **1. The pool's own launch, requester share** (Stage A step 3 onward; Stage A starts with no token) | the pool (or its forwarder) is the Intake payer, so the factory pays it 1% of every trade on the launch pool; `claimFees` moves it (§2b) | IMD keeps 20% of that share (0.8% net) and a 0.25% network fee; needs volume (SVO: about $22 lifetime; INFER: about 50 IMD a day to its payer) |
+| **2. The pool's own launch, hook fee** | a hook launch whose hook pays the pool on every trade; the rate is in our hook code | the main stream once a token exists; 1.5% of volume needs about $67k a day of trades for $1k a day |
+| **3. Other launches' requester share** | a launcher calls `setRequester(launch, pool)`; permissionless on their side, nothing to ask IMD | voluntary, per launch |
+| **4. Fee-bearing contracts or apps the swarm builds** | any contract or app with a fee parameter can name the pool: a launch template whose default requester is the pool, a service the swarm sells, the pool holding its own LP position (100% of that LP fee, with impermanent loss) | each is its own build and vote; **an app owned by the operator funding the pool is a visible on-chain link to that operator's other project (owner rule: no perceived coordination), so it is a decision, not a default** |
+| **5. Donations** | anyone sends; seats could vote dues on themselves | voluntary |
+
+**Not a stream:** the 10% Merkle drop every IMD launch makes to connected nodes. That is IMD's existing mechanic for every launch
+(claim card: the operator app's `launch-claims.mjs`); the pool's own launch will drop 10% of ITS supply to connected nodes like
+any other launch. It funds the nodes, not the pool, and §10 uses it only as the enrolment hook ("claim your share, then come
+vote"). A node operator may gift that claim to the pool; that is stream 5.
+
+**Not this project's:** IMDO's hook fee, treasury split, staking and its 89/10/1 supply. The pool could hold such a token like any
+holder, but that is a reserve decision for a vote, not a funding design.
+
+**Fixed by IMD, cannot change:** the 20% cut of the requester share, the 0.25% network fee, 0.5 IMD per action, and that
+continuation rights stay with the original Intake caller (so the pool must be that caller for its own project: the forwarder
+pattern in §3).
+
+**Honest size:** with no token, streams 3 to 5 are the whole income, and they are small. The spec's funding depends on step 3 of
+§10 (the pool's own launch) and on that launch trading.
+
 ## 3. The pool contract (`AgentPool`)
 
 1. **Deploy as the payer.** Launch with `launch.open` (`evm_project`, paired with IMD or ETH) or `workflow.open`; the pool contract
@@ -238,10 +268,11 @@ first. Signal votes become binding votes on the same page and login, only the su
 **Stage C: oracle lane + agents spending.** Tier 1 budgets and tier 2 questions, once Stage B has run clean.
 
 **Token design: the launch IS the token.** No governance token: seats govern (the anti-whale point). The pool's own IMD launch
-(`launch.open`; in Stage A the Safe pays, in Stage B the pool contract) gives: 80% in the pool and 1% of every trade back to the
-treasury (the fee source); **10% to the swarm via the Merkle distributor**, every connected seat gets a slice: the enrolment
-mechanic, and the claim card already exists (`launch-claims.mjs`): "claim your share, then come vote". The token is liquidity plus
-fee source, never a vote weight. No yield language (whitepaper rule).
+(`launch.open`; in Stage A the Safe pays, in Stage B the pool contract) gives: 80% of supply in the launch pool, 1% of every
+trade back to the payer (the fee source, §2b and §2c stream 1; a hook launch adds stream 2), and, like every IMD launch,
+**10% of supply dropped to the swarm nodes connected at launch** via the Merkle distributor: that 10% goes to the nodes, not to the
+pool, and is the enrolment mechanic only; the claim card already exists (`launch-claims.mjs`): "claim your share, then come
+vote". The token is liquidity plus fee source, never a vote weight. No yield language (whitepaper rule).
 
 **Who does what**
 
