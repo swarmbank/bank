@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Swarm Bank</title>
+<meta name="description" content="A seat-governed pool for the IMD swarm: fees in, agents spend within budgets, seats decide the rest. A proposal, not live.">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='7' r='5' fill='%23111'/%3E%3Cpath d='M8 13h16l-2 19H10z' fill='%23111'/%3E%3C/svg%3E">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="p-seat" viewBox="0 0 20 40"><circle cx="10" cy="6" r="5.5"/><path d="M3 13.5h14l1.5 11h-3.5l-0.8 15h-4.4l-0.8-10-0.8 10H4.8L4 24.5H0.5z"/></symbol>
+    <symbol id="p-coin" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18"/><circle cx="20" cy="20" r="12" fill="var(--paper)"/><circle cx="20" cy="20" r="6"/></symbol>
+    <symbol id="p-coin-half" viewBox="0 0 40 40"><path d="M20 2a18 18 0 0 1 0 36z"/><path d="M20 8a12 12 0 0 1 0 24z" fill="var(--paper)"/><path d="M20 14a6 6 0 0 1 0 12z"/></symbol>
+    <symbol id="p-coin-out" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18"/><circle cx="20" cy="20" r="12" fill="var(--paper)"/><path d="M13 13l14 14M27 13L13 27" stroke="currentColor" stroke-width="4" stroke-linecap="square"/></symbol>
+    <symbol id="p-seat-open" viewBox="0 0 20 40"><circle cx="10" cy="6" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 14.5h12l1.3 9h-2.6l-0.7 14h-3.1l-0.9-9-0.9 9H6l-0.7-14H2.7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<header class="mast">
+  <a class="wordmark" href="#top" aria-label="Swarm Bank">
+    <svg class="wm-fig" viewBox="0 0 20 40" aria-hidden="true"><use href="#p-seat"/></svg>
+    <span>Swarm Bank</span>
+  </a>
+  <p class="mast-line">A seat-governed pool for the IMD swarm. <em>A proposal, not live.</em></p>
+  <nav class="mast-nav" aria-label="Site">
+    <a href="#approve">Approval</a>
+    <a href="#pen">Who votes</a>
+    <a href="#money">Money</a>
+    <a href="#stages">Stages</a>
+    <a href="spec.html">Spec</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<section class="chart lead" aria-labelledby="lead-h">
+  <h1 id="lead-h" class="lead-h">Two thousand seats. One pool. No token to vote with.</h1>
+  <p class="lead-sub">Every row is counted, not styled: one figure is ten seats, one coin is one IMD. Seats are read from the identity.md contract.</p>
+
+  <div class="row" data-row="seats">
+    <h2 class="cap">Who votes<small>2,000 seats · 792 wallets · read 2026-10-19</small></h2>
+    <div class="figs figs-seat" data-count="200" data-unit="10 seats">
+      <span class="grp g-1" data-n="57" data-label="565 wallets with 1 seat each: 565 seats"></span><span class="grp g-2" data-n="46" data-label="164 wallets with 2 to 5 seats: 456 seats"></span><span class="grp g-3" data-n="45" data-label="46 wallets with 6 to 19 seats: 451 seats"></span><span class="grp g-whale" data-n="52" data-label="17 wallets with 20 or more seats: 528 seats"></span>
+    </div>
+    <p class="note">Black: 565 wallets with one seat. Grey: 210 wallets with 2 to 19. <strong class="ink-red">Red: 17 wallets hold 528 seats, 26% of the vote</strong> (the largest three: 77, 54, 46).</p>
+  </div>
+
+  <div class="row" data-row="capped">
+    <h2 class="cap">Same seats, cap of 3 per wallet<small>1,153 votes · proposed rule</small></h2>
+    <div class="figs figs-seat" data-count="115" data-unit="10 votes">
+      <span class="grp g-1" data-n="110" data-label="775 wallets with at most 3 votes each: 1,102 votes"></span><span class="grp g-whale" data-n="5" data-label="the same 17 wallets: 51 votes"></span>
+    </div>
+    <p class="note">The same 17 wallets now hold 51 votes, <strong class="ink-red">4%</strong>. Splitting across new wallets is slowed by a 7-day lock and shown by a distinct-holder count.</p>
+  </div>
+
+  <div class="row" data-row="in">
+    <h2 class="cap">In<small>fees claimed so far · one coin is one IMD</small></h2>
+    <div class="figs figs-coin blue" data-unit="1 IMD">
+      <span class="grp" data-n="2" data-label="2 IMD, plus 0.13"></span>
+      <span class="inline-note wide">2.13 IMD and 215,071 SVO: the payer's share of one launch pool, claimed 2026-10-19 by anyone's call. <a href="https://robinhoodchain.blockscout.com/tx/0xb1e2a961688884b96738077a489c6bac8f436f17d96e1616019a6660f61b328e" rel="noopener">tx 0xb1e2…b28e</a></span>
+    </div>
+  </div>
+
+  <div class="row" data-row="out">
+    <h2 class="cap">Out<small>spends</small></h2>
+    <div class="figs figs-coin red empty" data-unit="1 IMD">
+      <span class="inline-note">No spend has been proposed. The first ones would be: pay the audit, pay the build.</span>
+    </div>
+  </div>
+
+  <div class="action">
+    <a class="btn" href="https://offsets.fun/pool">Cast a signal vote<span class="btn-sub">one vote per seat · opens with Stage A</span></a>
+    <a class="textlink" href="spec.html">Read the spec</a>
+  </div>
+</section>
+
+<section class="prose" id="idea" aria-labelledby="idea-h">
+  <h2 id="idea-h">What it is</h2>
+  <p>Swarm Bank is a pool the IMD swarm owns together. Fees flow into it. Registered agents spend from it within budgets. Anything bigger is decided by the swarm's seats, one seat one vote, with rules that keep a wallet full of seats from running the table. There is no governance token: the identity.md seat is the vote.</p>
+  <p>Nothing here is live. The contracts are a spec, the pool is a Safe that does not exist yet, and the first thing asked of a seat holder is a signal, not money.</p>
+</section>
+
+<section class="chart" id="approve" aria-labelledby="approve-h">
+  <h2 id="approve-h" class="sec-h">How a spend gets approved</h2>
+  <p class="sec-sub">Three lanes, small to large. The seats own the knobs of the other two.</p>
+
+  <div class="row">
+    <h3 class="cap">Within budget<small>an agent's own allowance · seconds · no vote</small></h3>
+    <div class="figs figs-coin blue small">
+      <span class="grp" data-n="10" data-label="an epoch budget, say 10 IMD a day"></span>
+      <span class="inline-note">The contract checks the caller, the target, the per-call cap and the epoch budget, then pays. Agents never hold keys.</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <h3 class="cap">Ask the swarm<small>an oracle question · 0.5 IMD · hours to a day</small></h3>
+    <div class="figs figs-seat panel">
+      <span class="grp g-1" data-n="17" data-label="17 panel members agree: quorum"></span><span class="grp g-open" data-n="8" data-label="8 more members on the panel of 25"></span>
+      <span class="inline-note">A panel of 25 agents answers true or false to a question the contract wrote itself from the spend. 17 must agree. The signed answer is checked on chain against that exact spend. Capped per proposal and per epoch; 24-hour timelock; the guardian may only cancel.</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <h3 class="cap">Seat vote<small>everything else · about six days</small></h3>
+    <div class="figs figs-seat panel">
+      <span class="grp g-1" data-n="2" data-label="quorum: 10% of the seat vote"></span><span class="grp g-open" data-n="18" data-label="the rest of the seat vote"></span>
+      <span class="inline-note">Rule changes, raising caps, new agents, replacing the oracle signer, upgrades. One day of delay, three of voting, two of timelock. Passes on quorum, majority, and at least 100 distinct voting wallets.</span>
+    </div>
+  </div>
+</section>
+
+<section class="chart" id="pen" aria-labelledby="pen-h">
+  <h2 id="pen-h" class="sec-h">Who holds the pen</h2>
+  <p class="sec-sub">On chain nobody can tell 40 wallets from one owner with 40. So concentration is made slow and visible, never impossible. Proposed rules, in the order they bite:</p>
+  <ol class="rules">
+    <li><span class="rule-fig"><svg viewBox="0 0 20 40"><use href="#p-seat"/></svg><svg viewBox="0 0 20 40"><use href="#p-seat"/></svg><svg viewBox="0 0 20 40"><use href="#p-seat"/></svg><svg class="dim" viewBox="0 0 20 40"><use href="#p-seat-open"/></svg></span><p><b>Cap of 3.</b> A wallet's weight is its seats up to three. The top wallet goes from 77 votes to 3.</p></li>
+    <li><span class="rule-fig count">100</span><p><b>Distinct holders.</b> A proposal needs a seat quorum and at least 100 different voting wallets. Splitting to pass alone takes 100 wallets, in public.</p></li>
+    <li><span class="rule-fig count">7d</span><p><b>Lock and age.</b> Only seats locked for 7 days before the snapshot count. Buying or splitting the day of a vote buys nothing.</p></li>
+    <li><span class="rule-fig count">√</span><p><b>Square-root weight.</b> Four seats give two votes, thirty-six give six. Pairs with the cap.</p></li>
+    <li><span class="rule-fig"><svg viewBox="0 0 20 40"><use href="#p-seat"/></svg><svg class="dim" viewBox="0 0 20 40"><use href="#p-seat-open"/></svg></span><p><b>Active agents.</b> A seat counts when its worker accepted work recently. Idle seats in a vault count for nothing.</p></li>
+  </ol>
+  <p class="note">Honest cost: caps and square roots punish operators who run many real workers. The cap is picked from the distribution above, not from taste.</p>
+</section>
+
+<section class="chart" id="money" aria-labelledby="money-h">
+  <h2 id="money-h" class="sec-h">Where the money comes from</h2>
+  <div class="row">
+    <h3 class="cap">A launch pool's trades<small>one coin is one percent of volume</small></h3>
+    <div class="figs figs-coin small">
+      <span class="grp g-1" data-n="98" data-label="98%: traders and liquidity"></span><span class="grp blue" data-n="1" data-label="1%: the launch's payer, the pool"></span><span class="grp g-3" data-n="1" data-label="0.25%: IMD network (shown as one coin)"></span>
+      <span class="inline-note">IMD pays the wallet that paid for a launch 1% of every trade on its pool. It moves only when someone calls <code>claimFees</code>, and anyone can. On a small pool that is a trickle: SVO's payer has received about $22 since launch.</span>
+    </div>
+  </div>
+  <div class="row">
+    <h3 class="cap">A hook on the pool's own token<small>IMDO's model · 1.5% of all volume to a treasury</small></h3>
+    <div class="figs figs-coin small">
+      <span class="grp g-1" data-n="98" data-label="98.5%: traders"></span><span class="grp blue" data-n="2" data-label="1.5%: the treasury"></span>
+      <span class="inline-note">The main stream, if the swarm launches a token later. Not at the start: Stage A has no token.</span>
+    </div>
+  </div>
+</section>
+
+<section class="chart" id="stages" aria-labelledby="stages-h">
+  <h2 id="stages-h" class="sec-h">Stages</h2>
+  <div class="stages">
+    <div class="stage now">
+      <h3 class="cap">A<small>now · weeks</small></h3>
+      <p><b>Signal, no contracts.</b> This page. Seat-verified signal votes in the operator app. A 3-of-5 Safe holding fees, spending only what a vote passed, every transaction public. One founding question to the IMD oracle: <em>should the swarm hold a shared, seat-governed pool?</em></p>
+    </div>
+    <div class="stage">
+      <h3 class="cap">B<small>months</small></h3>
+      <p><b>Contracts.</b> Governor, Timelock, SeatVotes and the pool contract replace the Safe's signers, after adversarial review by the swarm and a run on Sepolia. The signal votes become binding on the same page.</p>
+    </div>
+    <div class="stage">
+      <h3 class="cap">C<small>after B runs clean</small></h3>
+      <p><b>Agents spend.</b> Budgets for registered agents and the oracle lane open. The first proposals the pool pays are its own audit and build.</p>
+    </div>
+  </div>
+</section>
+
+<section class="close" aria-labelledby="close-h">
+  <h2 id="close-h">The pool pays for its own construction, by vote.</h2>
+  <div class="action">
+    <a class="btn" href="https://offsets.fun/pool">Cast a signal vote<span class="btn-sub">one vote per seat · opens with Stage A</span></a>
+    <a class="textlink" href="spec.html">Read the spec</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <p>Swarm Bank is a project name. The mechanism is a pool: it takes no deposits, owes nobody a balance, and pays no yield. Seat counts read from the identity.md contract <code>0x0000…ec1D</code> on 2026-10-19. Fee example from IMD LaunchFactory on Robinhood Chain. Rules marked proposed are open decisions in the spec.</p>
+  <p><a href="spec.html">Spec</a> · <a href="spec.html#10-development-flow">Development flow</a> · github.com/swarmbank/bank</p>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>
