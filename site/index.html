@@ -50,12 +50,20 @@
 
 
   <div class="row" data-row="in">
-    <h2 class="cap">In<small>one launch pool's fees · a coin is one IMD of value</small></h2>
-    <div class="figs figs-coin small" data-unit="1 IMD">
-      <span class="grp blue" data-n="115" data-label="the payer's 80%: about 115 IMD of value"></span><span class="grp g-3" data-n="29" data-label="IMD network's 20%: about 29 IMD of value"></span>
-      <span class="inline-note">INFER, a swarm launch of 2026-10-11: 394,676 INFER and 69 IMD of trade fees sit unclaimed in its pool position today, about 144 IMD of value, and the payer's share grows by roughly 50 IMD a day. That is the stream this pool would collect.</span>
+    <h2 class="cap">In<small>fees this pool has collected</small></h2>
+    <div class="figs figs-coin blue empty" data-unit="1 IMD">
+      <span class="inline-note">Nothing yet. The pool does not exist; this row fills when it does.</span>
     </div>
   </div>
+
+  <div class="row" data-row="scale">
+    <h2 class="cap">For scale<small>what one launch pool pays its own payer · a coin is one IMD of value</small></h2>
+    <div class="figs figs-coin small" data-unit="1 IMD">
+      <span class="grp blue" data-n="115" data-label="the payer's 80%: about 115 IMD of value"></span><span class="grp g-3" data-n="29" data-label="IMD network's 20%: about 29 IMD of value"></span>
+      <span class="inline-note">INFER, a swarm launch of 2026-10-11, has earned <em>its own payer</em> 394,676 INFER and 69 IMD of trade fees so far, about 144 IMD of value, growing by roughly 50 IMD a day. None of it comes here. A pool that paid for launches would collect streams like it.</span>
+    </div>
+  </div>
+
   <div class="row" data-row="out">
     <h2 class="cap">Out<small>spends</small></h2>
     <div class="figs figs-coin red empty" data-unit="1 IMD">
@@ -132,7 +140,7 @@
     <h3 class="cap">A launch pool's trades<small>one coin is one percent of volume</small></h3>
     <div class="figs figs-coin small">
       <span class="grp g-1" data-n="98" data-label="98%: traders and liquidity"></span><span class="grp blue" data-n="1" data-label="1%: the launch's payer, the pool"></span><span class="grp g-3" data-n="1" data-label="0.25%: IMD network (shown as one coin)"></span>
-      <span class="inline-note">IMD pays the wallet that paid for a launch 1% of every trade on its pool. It moves only when someone calls <code>claimFees</code>, and anyone can. INFER turns over about 5,000 IMD of volume a day, so its payer earns about 50 IMD a day; a pool that holds many launches adds those streams up.</span>
+      <span class="inline-note">IMD pays the wallet that paid for a launch 1% of every trade on its pool. It moves only when someone calls <code>claimFees</code>, and anyone can. INFER turns over about 5,000 IMD of volume a day, so its payer (not this pool) earns about 50 IMD a day; a pool that paid for many launches would add such streams up.</span>
     </div>
   </div>
   <div class="row">
